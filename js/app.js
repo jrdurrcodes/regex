@@ -46,8 +46,11 @@ const loginForm = document.getElementById('loginForm')
 let userObj = { 
     id: 0,
     username: '',
-    password: ''
+    password: '',
+    dateCreated:"",
+    passwordDate:
 }
+
 let users = []
 
 // verify password
@@ -68,7 +71,7 @@ const verifyPassword =()=> {
             const  reqItem = document.createElement('li')
             reqItem.innerText = 'Password must be at least 8 characters'
             reqList.appendChild(reqItem)
-        }
+        } 
         
         if (!password.match(lowerTest)) {
             const  reqItem = document.createElement('li')
