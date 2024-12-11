@@ -21,10 +21,10 @@
  * $ => matches the end of an inpiut
  * 
  */
-const regex = /ki/ // matches lowercase letters
+// const regex = /ki/ // matches lowercase letters
 
 
-let myString = 'I like to eat apples  '
+// let myString = 'I like to eat apples  '
 
 //regex.test(str) => returns true or false
 // console.log(regex.test(myString))
@@ -43,11 +43,12 @@ let myString = 'I like to eat apples  '
 
 const loginForm = document.getElementById('loginForm')
 
-let user = { 
-    id: 1,
+let userObj = { 
+    id: 0,
     username: '',
     password: ''
 }
+let users = []
 
 // verify password
 const verifyPassword =()=> {
@@ -98,17 +99,41 @@ const verifyPassword =()=> {
     username.length == 0 ? alert('Please enter a username')
     :null 
 
-    if  ( password.match(regex)) {
-        display.innerText = 'Account created'
-    } else {
-        display.appendChild(reqList)
-    }
+    // if (password.match(regex)) {
+    //display.innerText = 'Account created'
+// }else {
+//     display.appendChild(reqList)
+// }
+// ^v These do the same thing.
+    
+    password.match(regex) ? createUser(username, password): display. appendChild(reqList)
 }
 
+const matchPasswords =()=> {
+    const password = document.getElementById('password').value
+
+    const confirmPassword = document.getElementById('confirmPassword').value
+    
+    const matchDisplay = document.getElementById('matchDisplay')
+
+    password != confirmPassword ? matchDisplay.innerText = 'Passwords do not match' : verifyPassword()
+
+}
+
+const createUser =(user, pass)=> {
+    userObj = { 
+        id: userObj.id++,
+        username: user,
+        password: pass
+    }
+
+    const display = document.getElementById('display')
+    display.innerText = `User ${userObj.username}created`
+}
 
 
 confirmBtn.addEventListener('click', (e)=> {
     e.preventDefault()
 
-    verifyPassword()
+    matchPasswords()
 })
